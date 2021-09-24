@@ -1,168 +1,124 @@
+// @dart=2.9
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:sort/sort.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  //const MyApp({ Key? key }) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  var contact = [
+    {
+      "name": "Widya Setia Ningrum",
+      "handphone": "081241567821",
+      "email": "widyasetya01@gmail.com",
+      "photo": "images/widya.jpg",
+    },
+    {
+      "name": "Dhia Hayyu Shahira",
+      "handphone": "085428389121",
+      "email": "hira110@gmail.com",
+      "photo": "images/hira.jpg",
+    },
+    {
+      "name": "Fiesta Putra Reifa Al Ghifar",
+      "handphone": "081246841187",
+      "email": "fiestaputra@gmail.com",
+      "photo": "images/fiesta.jpg",
+    },
+    {
+      "name": "Deska Dwi Zahrotun Nisa",
+      "handphone": "082331841702",
+      "email": "deskadwi@gmail.com",
+      "photo": "images/deska.jpg",
+    },
+    {
+      "name": "Yola Kristina Cendani",
+      "handphone": "081467829102",
+      "email": "yola209@gmail.com",
+      "photo": "images/yola.jpg",
+    },
+    {
+      "name": "Tri Kurnia",
+      "handphone": "085829301202",
+      "email": "trikurnia@gmail.com",
+      "photo": "images/nia.jpg",
+    },
+    {
+      "name": "Muhammad Muhtadin Nurilhaq",
+      "handphone": "08218452871",
+      "email": "adinextension@gmail.com",
+      "photo": "images/muhtadin.jpg",
+    },
+    {
+      "name": "Nur Wahyu Gosi Hidayat",
+      "handphone": "082840201842 ",
+      "email": "gosi16@gmail.com",
+      "photo": "images/gosi.jpg",
+    },
+    {
+      "name": "Naufal Zakly Santoso",
+      "handphone": "084729103892",
+      "email": "naufal56@gmail.com",
+      "photo": "images/noval.jpg",
+    },
+    {
+      "name": "Muhammad Riyadh Azhar",
+      "handphone": "082124958728",
+      "email": "arap20@gmail.com",
+      "photo": "images/arap.jpg",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
+    contact.simpleSort(sortBy: "name");
+
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.lightBlue,
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Daftar Pemain Bola',
-          style: GoogleFonts.raleway(
-              fontSize: 24,
-              color: Colors.lightBlue,
-              fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(10),
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            SizedBox(
-              height: 30,
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              "List Contact Phone",
+              style: TextStyle(color: Colors.black),
             ),
-            BoxPemain(4, 'assets/icardi.png', 'Mauro Icardi', 'Argentina',
-                'Paris Saint-Germain F.C'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(3, 'assets/muller.png', 'Thomas Müller', 'Germany',
-                'FC Bayer Munich'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(4, 'assets/chiesa.png', 'Federico Chiesa', 'Italia',
-                'Juventus F.C.'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(3, 'assets/vinicius.png', 'Vinícius JR', 'Brazil',
-                ' Real Madrid'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(5, 'assets/lukaku.png', 'Romelu Lukaku', 'Belgium',
-                'Chelsea F.C.'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(4, 'assets/icardi.png', 'Mauro Icardi', 'Argentina',
-                'Paris Saint-Germain F.C'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(3, 'assets/muller.png', 'Thomas Müller', 'Germany',
-                'FC Bayer Munich'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(4, 'assets/chiesa.png', 'Federico Chiesa', 'Italia',
-                'Juventus F.C.'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(3, 'assets/vinicius.png', 'Vinícius JR', 'Brazil',
-                ' Real Madrid'),
-            SizedBox(
-              height: 30,
-            ),
-            BoxPemain(5, 'assets/lukaku.png', 'Romelu Lukaku', 'Belgium',
-                'Chelsea F.C.'),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BoxPemain extends StatelessWidget {
-  final String nama;
-  final int bintang;
-  final String gambar;
-  final String negaraAsal;
-  final String club;
-
-  BoxPemain(this.bintang, this.gambar, this.nama, this.negaraAsal, this.club);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      borderOnForeground: true,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: Colors.black38,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              width: 100,
-              height: 100,
-              child: Image.asset(
-                gambar,
-                fit: BoxFit.cover,
-              ),
-            ),
+            backgroundColor: Colors.yellow.shade400,
           ),
-          SizedBox(
-            width: 20,
+          body: ListView.builder(
+            itemBuilder: (context, index) {
+              return Container(
+                color: Colors.yellowAccent,
+                child: Card(
+                  color: Colors.black,
+                  child: ListTile(
+                      title: Text(contact.elementAt(index).values.elementAt(0),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold)),
+                      subtitle: Text(
+                        contact.elementAt(index).values.elementAt(1) +
+                            ' | ' +
+                            contact.elementAt(index).values.elementAt(2),
+                        style: TextStyle(color: Colors.white54),
+                      ),
+                      leading: CircleAvatar(
+                        backgroundImage: AssetImage(
+                            contact.elementAt(index).values.elementAt(3)),
+                      )),
+                ),
+              );
+            },
+            itemCount: contact.length,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                nama,
-                style: GoogleFonts.raleway(fontSize: 15, color: Colors.white),
-              ),
-              SizedBox(
-                height: 2.30,
-              ),
-              Text(
-                negaraAsal,
-                style: GoogleFonts.raleway(fontSize: 13, color: Colors.yellow),
-              ),
-              Text(
-                club,
-                style: GoogleFonts.raleway(
-                    fontSize: 11, color: Colors.lightBlue[100]),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: [
-                  for (var i = 0; i < bintang; i++)
-                    Icon(
-                      Icons.star_sharp,
-                      color: Colors.yellow,
-                    )
-                ],
-              )
-            ],
-          ),
-        ],
-      ),
-    );
+        ));
   }
 }
